@@ -288,7 +288,7 @@
   });
 
   function sendDataToGAS(formData, originalText) {
-    fetch(scriptURL, { method: 'POST', body: formData })
+    fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' })
       .then(response => {
         alert('✅ Data berhasil dikirim! Petugas medis akan segera merespon atau mendatangi lokasi Anda.');
         form.reset(); 
@@ -306,3 +306,4 @@
 
 </body>
 </html>
+
