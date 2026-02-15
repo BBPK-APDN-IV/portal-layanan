@@ -3,58 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Layanan Peserta</title>
+<title>Portal Layanan Peserta - BBPK-APDN IV</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fragment+Mono&display=swap" rel="stylesheet">
+
 <style>
   /* --- 1. RESET & DASAR --- */
   html, body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: #f0f4f8; /* Background abu-abu kebiruan lembut */
+    background-color: #f0f4f8; 
     overflow-x: hidden;
   }
 
-  /* --- KONTAINER UTAMA (EFEK APLIKASI) --- */
+  /* --- KONTAINER UTAMA (MENU 480px) --- */
   .container {
-    max-width: 480px; /* Kunci lebar maksimal agar menyerupai layar HP */
-    margin: 40px auto; /* Posisi di tengah layar dengan jarak dari atas */
+    max-width: 480px; 
+    margin: 40px auto 20px auto; 
     padding: 30px 20px;
-    background: #ffffff; /* Warna latar putih murni */
-    border-radius: 24px; /* Sudut kartu membulat modern */
-    box-shadow: 0 10px 30px rgba(32, 94, 108, 0.1); /* Bayangan elegan */
+    background: #ffffff; 
+    border-radius: 24px; 
+    box-shadow: 0 10px 30px rgba(32, 94, 108, 0.1); 
     text-align: center;
     box-sizing: border-box;
   }
 
-  /* --- 2. HEADER --- */
-  .header-icon {
-    font-size: 48px;
-    margin-bottom: 10px;
+  /* --- 2. HEADER CINEMATIC (DARI KODE ANDA) --- */
+  .cinematic-hero {
+    width: 100%;
+    /* Min-height dan padding disesuaikan sedikit agar pas di dalam kartu */
+    padding: 15px 0 35px 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
   }
-  
-  .header-title {
-    color: #205E6C;
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin: 0;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+
+  .cinematic-wrap {
+    text-align: center;
+    padding: 0 10px;
   }
-  
-  .header-subtitle {
-    color: #64748b;
-    font-size: 0.9rem;
-    margin: 5px 0 25px 0;
+
+  .cine-line {
+    color: #296374; /* Teal Gelap */
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .cine-line-1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    letter-spacing: 0.6px;
+    animation: cinematicGlow 2.5s ease forwards;
+  }
+
+  .cine-line-2 {
+    font-family: 'Fragment Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    animation: cinematicRise 2.5s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .cine-line-3 {
+    font-family: 'Fragment Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    opacity: 0.9;
+    animation: cinematicRise 2.5s ease forwards;
+    animation-delay: 0.4s;
+  }
+
+  /* ANIMASI (SEKALI SAJA) */
+  @keyframes cinematicGlow {
+    0% { opacity: 0; transform: scale(0.97); text-shadow: none; }
+    60% {
+        opacity: 1; transform: scale(1);
+        text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 0 0 18px rgba(255,255,255,0.85), 0 0 40px rgba(255,255,255,0.45);
+    }
+    100% {
+        opacity: 1; transform: scale(1);
+        text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 0 0 14px rgba(255,255,255,0.6), 0 0 28px rgba(255,255,255,0.3);
+    }
+  }
+
+  @keyframes cinematicRise {
+    0% { opacity: 0; transform: translateY(14px); }
+    70% {
+        opacity: 1; transform: translateY(0);
+        text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 0 0 8px rgba(255,255,255,0.6);
+    }
+    100% {
+        opacity: 1; transform: translateY(0);
+        text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 0 0 4px rgba(255,255,255,0.35);
+    }
   }
 
   /* --- 3. MENU GRID --- */
   .menu-grid {
     display: flex;
     flex-direction: column;
-    gap: 14px; /* Jarak antar tombol sedikit dilebarkan */
+    gap: 14px; 
   }
 
-  /* KARTU MENU STANDAR */
   .menu-card {
     background: #205E6C;
     color: white;
@@ -78,7 +138,6 @@
     transform: scale(0.98);
   }
 
-  /* WARNA KHUSUS KARTU DAYCARE */
   .menu-card.daycare {
     background: linear-gradient(135deg, #FF7043, #F4511E);
     box-shadow: 0 4px 6px rgba(244, 81, 30, 0.2);
@@ -88,7 +147,6 @@
     box-shadow: 0 8px 15px rgba(244, 81, 30, 0.3);
   }
 
-  /* ISI KARTU (ICON & TEXT) */
   .card-icon {
     font-size: 28px;
     background: rgba(255,255,255,0.2);
@@ -101,9 +159,7 @@
     flex-shrink: 0;
   }
   
-  .card-content {
-    flex-grow: 1;
-  }
+  .card-content { flex-grow: 1; }
   
   .card-title {
     font-size: 14px;
@@ -153,6 +209,7 @@
     padding: 15px;
     border-radius: 8px;
     text-align: left;
+    margin-bottom: 5px;
   }
   
   .notice-title {
@@ -170,46 +227,154 @@
 
   /* --- 6. FOTO SAMPUL --- */
   .cover-photo {
-    /* Mengakali padding container agar foto menempel ke ujung layar/kartu */
-    margin: -30px -20px 20px -20px; 
-    height: 160px; /* Tinggi foto sampul */
-    border-radius: 24px 24px 0 0; /* Melengkung di sudut atas saja */
+    margin: -30px -20px 0px -20px; 
+    height: 160px; 
+    border-radius: 24px 24px 0 0; 
     overflow: hidden;
-    background-color: #e2e8f0; /* Warna latar jika foto lambat dimuat */
+    background-color: #e2e8f0; 
   }
 
   .cover-photo img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Menjaga proporsi gambar agar tidak gepeng */
+    object-fit: cover; 
     display: block;
   }
 
-  /* --- 7. FOOTER APLIKASI --- */
-  .app-footer {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px dashed #cbd5e1; /* Garis pemisah putus-putus yang elegan */
-    text-align: center;
-    color: #94a3b8;
-    font-size: 11px;
-    line-height: 1.6;
-  }
-  
-  .app-footer span {
-    font-weight: 700;
-    color: #64748b;
+  /* --- 7. FOOTER INSTANSI (GAYA MOBILE APP / 480px) --- */
+  .instansi-footer {
+    background-color: #265C68; 
+    color: #ffffff;
+    max-width: 480px; 
+    margin: 0 auto 40px auto; 
+    border-radius: 24px; 
+    box-shadow: 0 10px 30px rgba(32, 94, 108, 0.1); 
+    overflow: hidden; 
+    box-sizing: border-box;
   }
 
-  /* Responsif untuk layar HP yang sangat kecil */
+  .footer-grid {
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center; 
+  }
+
+  .footer-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo-container img {
+    max-width: 200px; 
+    margin-bottom: 20px;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .soc-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .soc-btn:hover { 
+    opacity: 0.9; 
+    transform: scale(1.1);
+  }
+  
+  .soc-btn.ig { background-color: #E1306C; }
+  .soc-btn.fb { background-color: #1877F2; }
+  .soc-btn.yt { background-color: #FF0000; }
+  .soc-btn.x { background-color: #000000; }
+
+  .footer-col h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-col p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #e2e8f0;
+    text-align: justify; 
+    margin: 0;
+  }
+
+  .footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-contact-list li {
+    font-size: 12px;
+    color: #e2e8f0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
+    text-align: left; 
+  }
+
+  .footer-contact-list li i {
+    margin-top: 2px;
+    color: #ef4444; 
+    min-width: 16px;
+    text-align: center;
+  }
+  
+  .footer-contact-list li i.fa-envelope,
+  .footer-contact-list li i.fa-globe {
+    color: #ffffff; 
+  }
+
+  .footer-contact-list a {
+    color: #e2e8f0;
+    text-decoration: none;
+  }
+  
+  .footer-contact-list a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom-bar {
+    background-color: rgba(0, 0, 0, 0.15); 
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 11px;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+
+  /* Responsif untuk HP sangat kecil */
   @media (max-width: 480px) {
-    .container {
-      margin: 15px auto;
-      border-radius: 16px;
-    }
-    .cover-photo {
-      border-radius: 16px 16px 0 0; /* Menyesuaikan lengkungan dengan container di HP */
-    }
+    .container { margin: 15px auto 15px auto; border-radius: 16px; }
+    .cover-photo { border-radius: 16px 16px 0 0; }
+    .instansi-footer { margin: 0 15px 30px 15px; border-radius: 16px; }
+    
+    .cine-line-1 { font-size: 34px; }
+    .cine-line-2 { font-size: 13px; letter-spacing: 1.2px; }
+    .cine-line-3 { font-size: 11px; }
   }
 </style>
 </head>
@@ -218,14 +383,17 @@
 <div class="container">
 
   <div class="cover-photo">
-    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foto Sampul Layanan">
+    <img src="header.gif" alt="Gedung Diklat Bergerak">
   </div>
-  <div class="header-icon">🏢</div>
-  <h1 class="header-title">Portal Layanan Peserta</h1>
-  <p class="header-subtitle">Pusat Informasi & Bantuan</p>
 
+  <header class="cinematic-hero">
+    <div class="cinematic-wrap">
+      <div class="cine-line cine-line-1">Portal Layanan Peserta</div>
+      <div class="cine-line cine-line-2">LAYANAN PESERTA DIKLAT</div>
+      <div class="cine-line cine-line-3">Pusat Informasi & Bantuan</div>
+    </div>
+  </header>
   <div class="menu-grid">
-    
     <a href="asrama.html" class="menu-card">
       <div class="card-icon">🏠</div>
       <div class="card-content">
@@ -247,7 +415,7 @@
     <a href="wifi.html" class="menu-card">
       <div class="card-icon">📶</div>
       <div class="card-content">
-        <span class="card-title">INTERNET & WI-FI</span>
+        <span class="card-title">INTERNET / WI-FI</span>
         <span class="card-desc">Kendala koneksi internet</span>
       </div>
       <span>❯</span>
@@ -270,7 +438,6 @@
       </div>
       <span>❯</span>
     </a>
-
   </div> 
 
   <a href="tel:0800000004" class="emergency-card">
@@ -290,11 +457,42 @@
     </div>
   </div>
 
-  <div class="app-footer">
-    <p>Portal Layanan Peserta &copy; 2026<br>
-    <span>Pusat Informasi & Pengaduan Fasilitas</span></p>
-  </div>
+</div> 
+
+
+<footer class="instansi-footer">
+  <div class="footer-grid">
+    
+    <div class="footer-col footer-logo-container">
+      <img src="footer.png" alt="Logo BBPK APDN-IV">
+      <div class="social-icons">
+        <a href="https://www.instagram.com/bbpk_apdn_makassar?igsh=MWhqY3JjenR2NHgyMQ==" class="soc-btn ig"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/share/14NV1ssNewB/" class="soc-btn fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://youtube.com/@ppsdmkemendagriregionalmak5546?si=cxQtv3WEdiOgub5F" class="soc-btn yt"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Tentang BBPK-APDN IV</h3>
+      <p>Balai Besar Pengembangan Kompetensi Aparatur Pemerintahan Dalam Negeri Wilayah IV (BBPKA-APDN IV), yang pada masa lalu dikenal sebagai PPSDM Kemendagri Regional Makassar. Balai Besar Pengembangan Kompetensi Aparatur Pemerintahan Dalam Negeri Wilayah IV (BBPKA-APDN IV) mempunyai peran strategis dalam mengelola program pengembangan kompetensi aparatur pemerintahan di wilayah layanannya, meliputi perencanaan, pelaksanaan, dan evaluasi pendidikan serta pelatihan bagi ASN demi peningkatan kualitas layanan pemerintahan daerah.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Hubungi Kami</h3>
+      <ul class="footer-contact-list">
+        <li><i class="fa-solid fa-location-dot" style="font-size: 16px;"></i> <span>Jl. Paccerakkang No.3, Paccerakkang, Kec. Biringkanaya, Kota Makassar, Sulawesi Selatan 90241</span></li>
+        <li><i class="fa-solid fa-phone" style="font-size: 14px;"></i> <span>0811-2702-7177</span></li>
+        <li><i class="fa-regular fa-envelope" style="font-size: 14px;"></i> <span>mediappsdmmks@gmail.com</span></li>
+        <li><i class="fa-solid fa-globe" style="font-size: 14px;"></i> <span><a href="http://www.ppsdmregmakassar.kemendagri.go.id" target="_blank">www.ppsdmregmakassar.kemendagri.go.id</a></span></li>
+      </ul>
+    </div>
+
   </div>
 
+  <div class="footer-bottom-bar">
+    Copyright &copy; 2026 Kementerian Dalam Negeri <br>
+    | BBPK-APDN IV | Design by Nafiqa Harseno 
+  </div>
+</footer>
 </body>
 </html>
