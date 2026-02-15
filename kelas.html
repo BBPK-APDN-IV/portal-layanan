@@ -248,7 +248,7 @@
   });
 
   function sendDataToGAS(formData, originalText) {
-    fetch(scriptURL, { method: 'POST', body: formData })
+    fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' })
       .then(response => {
         alert('✅ Laporan berhasil dikirim! Panitia akan segera menindaklanjuti.');
         form.reset(); 
@@ -266,3 +266,4 @@
 
 </body>
 </html>
+
