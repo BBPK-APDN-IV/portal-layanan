@@ -3,10 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akses Wi-Fi</title>
 <style>
-  /* --- RESET --- */
-  html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; background: transparent; }
-  .container { max-width: 600px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
+  /* --- RESET & DASAR --- */
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f0f4f8; 
+    overflow-x: hidden;
+  }
+
+  /* --- KONTAINER UTAMA --- */
+  .container {
+    max-width: 480px; 
+    margin: 40px auto; 
+    padding: 30px 20px;
+    background: #ffffff; 
+    border-radius: 24px; 
+    box-shadow: 0 10px 30px rgba(32, 94, 108, 0.1); 
+    box-sizing: border-box;
+  }
+  
+  @media (max-width: 480px) {
+    .container { margin: 15px auto; border-radius: 16px; }
+  }
 
   /* --- TOMBOL KEMBALI --- */
   .btn-back {
@@ -20,31 +40,28 @@
 
   .header-section { text-align: center; margin-bottom: 25px; }
   .page-title { color: #205E6C; font-weight: 800; font-size: 20px; margin: 0; }
-  .page-subtitle { font-size: 13px; color: #FFF; margin-top: 5px; }
+  .page-subtitle { font-size: 13px; color: #64748b; margin-top: 5px; }
 
-  /* --- GRID --- */
+  /* --- GRID KARTU WIFI --- */
   .wifi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 30px; }
 
-  /* --- KARTU WIFI --- */
   .wifi-card {
-    background: #ffffff; border-radius: 12px; padding: 15px 10px;
+    background: #ffffff; border-radius: 16px; padding: 15px 10px;
     display: flex; flex-direction: column; align-items: center; text-align: center;
-    border: 1px solid #e0e0e0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     transition: transform 0.2s;
   }
-  .wifi-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+  .wifi-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(32, 94, 108, 0.1); }
   
   .qr-img { width: 90px; height: 90px; margin-bottom: 8px; border-radius: 6px; }
   .wifi-ssid { font-size: 13px; font-weight: 700; color: #205E6C; margin-bottom: 4px; line-height: 1.2; }
 
-  /* --- TEXT PASSWORD KECIL --- */
   .wifi-pass-small {
-    font-size: 11px; color: #555; background: #f4f6f7;
+    font-size: 11px; color: #475569; background: #f8fafc;
     padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;
-    font-family: monospace; border: 1px solid #e0e0e0;
+    font-family: monospace; border: 1px solid #e2e8f0;
   }
 
-  /* --- TOMBOL SMART CONNECT (JAVASCRIPT) --- */
   .btn-smart {
     background: #205E6C; color: white; border: none;
     width: 100%; padding: 10px; border-radius: 8px;
@@ -54,21 +71,56 @@
   }
   .btn-smart:hover { background: #164652; }
   .btn-smart:active { transform: scale(0.95); }
-  
-  /* Saat sukses tersalin/konek */
   .btn-smart.active { background: #2e7d32; }
 
-  /* --- TOMBOL LAPOR --- */
-  .report-btn {
-    background: #d32f2f; color: white; text-decoration: none;
-    padding: 15px 20px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.2);
+  /* --- CUSTOM FORM TICKET (WIFI) --- */
+  .ticket-form-card {
+    background: #ffffff; border: 1px solid #fca5a5;
+    border-radius: 16px; padding: 20px; text-align: left;
+    box-shadow: 0 4px 6px rgba(220, 38, 38, 0.05); /* Bayangan kemerahan tipis */
   }
-  .report-left { display: flex; align-items: center; gap: 15px; }
-  .report-icon { font-size: 24px; background: rgba(255,255,255,0.2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-  .report-text { font-weight: 700; font-size: 14px; display: block; }
-  .report-sub { font-size: 11px; opacity: 0.9; font-weight: 400; }
+
+  .form-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px; border-bottom: 2px solid #fef2f2;
+    padding-bottom: 12px;
+  }
+
+  .form-header-icon { font-size: 24px; }
+  .form-header-title { font-weight: 800; color: #dc2626; font-size: 16px; }
+
+  .form-group { margin-bottom: 16px; }
+  
+  .form-group label {
+    display: block; font-size: 13px; font-weight: 700;
+    color: #475569; margin-bottom: 8px;
+  }
+
+  .form-group select, .form-group input[type="text"], .form-group textarea {
+    width: 100%; padding: 12px; border: 1px solid #cbd5e1;
+    border-radius: 10px; font-family: inherit; font-size: 14px;
+    box-sizing: border-box; background-color: #f8fafc; transition: all 0.2s;
+  }
+
+  .form-group select:focus, .form-group input[type="text"]:focus, .form-group textarea:focus {
+    outline: none; border-color: #dc2626; background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  }
+
+  .form-group input[type="file"] {
+    width: 100%; padding: 10px; border: 1px dashed #cbd5e1;
+    border-radius: 10px; font-size: 12px; background-color: #f8fafc; color: #475569;
+  }
+
+  .btn-submit {
+    background: #dc2626; /* Warna merah untuk lapor gangguan */
+    color: white; border: none; padding: 14px; width: 100%;
+    border-radius: 10px; font-weight: 800; font-size: 14px;
+    cursor: pointer; transition: background 0.2s; margin-top: 10px;
+  }
+  
+  .btn-submit:hover { background: #b91c1c; }
+  .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 
 </style>
 </head>
@@ -76,133 +128,192 @@
 
 <div class="container">
 
-  <a href="index.html" class="btn-back">
-    <span>❮</span> Menu Utama
-  </a>
+  <div style="text-align: left;">
+    <a href="index.html" class="btn-back">
+      <span>❮</span> Menu Utama
+    </a>
+  </div>
 
   <div class="header-section">
-    <div class="page-title">Akses Wi-Fi</div>
-    <div class="page-subtitle">Pilih lokasi untuk tersambung</div>
+    <h2 class="page-title">Akses Wi-Fi</h2>
+    <p class="page-subtitle">Pilih lokasi untuk tersambung</p>
   </div>
 
   <div class="wifi-grid">
-
     <div class="wifi-card">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:Gedung%20A;P:tes1234;;" class="qr-img">
       <div class="wifi-ssid">Gedung A</div>
       <div class="wifi-pass-small">Pass: tes1234</div>
-      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20A', 'tes1234')">
-        🚀 Sambungkan
-      </button>
+      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20A', 'tes1234')">🚀 Sambung</button>
     </div>
-
     <div class="wifi-card">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:Kelas%20Aula;P:tes1234;;" class="qr-img">
       <div class="wifi-ssid">Kelas Aula</div>
       <div class="wifi-pass-small">Pass: tes1234</div>
-      <button class="btn-smart" onclick="smartConnect(this, 'Kelas%20Aula', 'tes1234')">
-        🚀 Sambungkan
-      </button>
+      <button class="btn-smart" onclick="smartConnect(this, 'Kelas%20Aula', 'tes1234')">🚀 Sambung</button>
     </div>
-
     <div class="wifi-card">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:Kelas%20Rajawali;P:tes1234;;" class="qr-img">
       <div class="wifi-ssid">Kelas Rajawali</div>
       <div class="wifi-pass-small">Pass: tes1234</div>
-      <button class="btn-smart" onclick="smartConnect(this, 'Kelas%20Rajawali', 'tes1234')">
-        🚀 Sambungkan
-      </button>
+      <button class="btn-smart" onclick="smartConnect(this, 'Kelas%20Rajawali', 'tes1234')">🚀 Sambung</button>
     </div>
-
     <div class="wifi-card">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:Kelas%20Cendrawasih;P:tes1234;;" class="qr-img">
       <div class="wifi-ssid">Kelas Cendrawasih</div>
       <div class="wifi-pass-small">Pass: tes1234</div>
-      <button class="btn-smart" onclick="smartConnect(this, 'Kelas%20Cendrawasih', 'tes1234')">
-        🚀 Sambungkan
-      </button>
+      <button class="btn-smart" onclick="smartConnect(this, 'Kelas%20Cendrawasih', 'tes1234')">🚀 Sambung</button>
     </div>
-
     <div class="wifi-card">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:Gedung%20E%20Lt%201;P:tes1234;;" class="qr-img">
       <div class="wifi-ssid">Gedung E Lt 1</div>
       <div class="wifi-pass-small">Pass: tes1234</div>
-      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20E%20Lt%201', 'tes1234')">
-        🚀 Sambungkan
-      </button>
+      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20E%20Lt%201', 'tes1234')">🚀 Sambung</button>
     </div>
-
     <div class="wifi-card">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:Gedung%20E%20Lt%202;P:tes1234;;" class="qr-img">
       <div class="wifi-ssid">Gedung E Lt 2</div>
       <div class="wifi-pass-small">Pass: tes1234</div>
-      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20E%20Lt%202', 'tes1234')">
-        🚀 Sambungkan
-      </button>
+      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20E%20Lt%202', 'tes1234')">🚀 Sambung</button>
     </div>
-
     <div class="wifi-card">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:Gedung%20F%20Lt%201;P:tes1234;;" class="qr-img">
       <div class="wifi-ssid">Gedung F Lt 1</div>
       <div class="wifi-pass-small">Pass: tes1234</div>
-      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20F%20Lt%201', 'tes1234')">
-        🚀 Sambungkan
-      </button>
+      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20F%20Lt%201', 'tes1234')">🚀 Sambung</button>
     </div>
-
     <div class="wifi-card">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:Gedung%20F%20Lt.%202;P:tes1234;;" class="qr-img">
       <div class="wifi-ssid">Gedung F Lt. 2</div>
       <div class="wifi-pass-small">Pass: tes1234</div>
-      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20F%20Lt.%202', 'tes1234')">
-        🚀 Sambungkan
-      </button>
+      <button class="btn-smart" onclick="smartConnect(this, 'Gedung%20F%20Lt.%202', 'tes1234')">🚀 Sambung</button>
     </div>
-
   </div>
 
-  <a href="https://forms.gle/KNasZJCPJ2iHLFXk6" target="_blank" class="report-btn">
-    <div class="report-left">
-      <div class="report-icon">📶</div>
-      <div>
-        <span class="report-text">Lapor Gangguan</span>
-        <span class="report-sub">Sinyal lemot, putus, atau gagal login</span>
-      </div>
+  <div class="ticket-form-card">
+    <div class="form-header">
+      <div class="form-header-icon">📶</div>
+      <div class="form-header-title">Lapor Gangguan Wi-Fi</div>
     </div>
-    <span style="font-weight:bold; font-size:18px;">ᐳ</span>
-  </a>
+    
+    <form id="formWifi" name="submit-to-google-sheet">
+      
+      <div class="form-group">
+        <label for="nama">Nama Pelapor / Peserta</label>
+        <input type="text" id="nama" name="nama" placeholder="Contoh: Budi Santoso" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lokasi">Lokasi Jaringan / Gedung</label>
+        <select id="lokasi" name="lokasi" required>
+          <option value="" disabled selected>-- Pilih Lokasi --</option>
+          <option value="Gedung A">Gedung A</option>
+          <option value="Kelas Aula">Kelas Aula</option>
+          <option value="Kelas Rajawali">Kelas Rajawali</option>
+          <option value="Kelas Cendrawasih">Kelas Cendrawasih</option>
+          <option value="Gedung E Lt 1">Gedung E Lt 1</option>
+          <option value="Gedung E Lt 2">Gedung E Lt 2</option>
+          <option value="Gedung F Lt 1">Gedung F Lt 1</option>
+          <option value="Gedung F Lt 2">Gedung F Lt 2</option>
+          <option value="Lainnya">Lainnya / Tidak Tahu</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="gangguan">Jenis Gangguan</label>
+        <select id="gangguan" name="gangguan" required>
+          <option value="" disabled selected>-- Pilih Kendala --</option>
+          <option value="Sinyal Lemah/Putus">Sinyal Lemah / Sering Putus</option>
+          <option value="Tidak Bisa Konek">Sinyal Ada Tapi Tidak Bisa Konek</option>
+          <option value="Password Salah">Gagal Login / Password Salah</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="keluhan">Keterangan Tambahan</label>
+        <textarea id="keluhan" name="keluhan" rows="2" placeholder="Jelaskan di sini... (Opsional)"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="foto">Screenshot Error <span style="font-weight: normal; color: #64748b;">(Opsional)</span></label>
+        <input type="file" id="foto" accept="image/png, image/jpeg, image/jpg">
+      </div>
+      
+      <button type="submit" class="btn-submit" id="btnSubmit">KIRIM LAPORAN WIFI</button>
+    </form>
+  </div>
 
 </div>
 
 <script>
+  // FUNGSI 1: SMART CONNECT (TIDAK DIHILANGKAN)
   function smartConnect(btn, ssid, password) {
-    // 1. Ubah Tampilan Tombol (Feedback)
     var originalText = btn.innerHTML;
     btn.innerHTML = "Mencoba...";
     btn.classList.add("active");
 
-    // 2. Salin Password (Backup Plan - PENTING)
-    // Jika konek otomatis gagal, password sudah ada di tangan user
-    navigator.clipboard.writeText(password).then(function() {
-       // Silent success
-    }).catch(function() {
-       // Silent fail
-    });
+    navigator.clipboard.writeText(password).then(function() {}).catch(function() {});
 
-    // 3. Eksekusi Perintah Wi-Fi Tanpa Buka Tab Baru
-    // Menggunakan location.href memaksa browser pindah, bukan buka window baru
     setTimeout(function() {
       window.location.href = "WIFI:T:WPA;S:" + ssid + ";P:" + password + ";;";
-      
-      // 4. Update Pesan untuk User
-      btn.innerHTML = "✅ Pass Tersalin";
-      
-      // 5. Reset tombol setelah 3 detik
+      btn.innerHTML = "✅ Tersalin";
       setTimeout(function() {
         btn.innerHTML = originalText;
         btn.classList.remove("active");
       }, 3000);
     }, 500);
+  }
+
+  // FUNGSI 2: PENGIRIM FORMULIR LAPORAN GANGGUAN WIFI
+  // PENTING: GANTI TEKS DI BAWAH INI DENGAN URL WEB APP WIFI MILIK ANDA!
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyrYoS_7tZekiiIXkRmHOkGvIDsjhFG7Zw8eqp2gVe9FlBC3OIn8-ZyERpE3g94LHox/exec';
+  
+  const form = document.forms['submit-to-google-sheet'];
+  const btnSubmit = document.getElementById('btnSubmit');
+  const fileInput = document.getElementById('foto');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault(); 
+    
+    const originalText = btnSubmit.innerHTML;
+    btnSubmit.innerHTML = 'MENGIRIM... ⏳';
+    btnSubmit.disabled = true;
+
+    const formData = new FormData(form);
+    const file = fileInput.files[0];
+
+    if (file) {
+      btnSubmit.innerHTML = 'MENGUNGGAH FOTO... ⏳';
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const base64Data = event.target.result.split(',')[1];
+        formData.append('fileData', base64Data);
+        formData.append('mimeType', file.type);
+        formData.append('fileName', file.name);
+        
+        sendDataToGAS(formData, originalText);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      sendDataToGAS(formData, originalText);
+    }
+  });
+
+  function sendDataToGAS(formData, originalText) {
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(response => {
+        alert('✅ Laporan gangguan Wi-Fi berhasil dikirim! Tim IT akan segera mengecek.');
+        form.reset(); 
+        btnSubmit.innerHTML = originalText;
+        btnSubmit.disabled = false;
+      })
+      .catch(error => {
+        alert('❌ Gagal mengirim laporan. Periksa koneksi internet Anda atau lapor manual ke petugas.');
+        console.error('Error!', error.message);
+        btnSubmit.innerHTML = originalText;
+        btnSubmit.disabled = false;
+      });
   }
 </script>
 
