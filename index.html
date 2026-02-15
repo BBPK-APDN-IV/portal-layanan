@@ -3,49 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Layanan Peserta</title>
 <style>
   /* --- 1. RESET & DASAR --- */
   html, body {
     margin: 0;
     padding: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-    background: transparent;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f0f4f8; /* Background abu-abu kebiruan lembut */
     overflow-x: hidden;
   }
 
+  /* --- KONTAINER UTAMA (EFEK APLIKASI) --- */
   .container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 15px;
+    max-width: 480px; /* Kunci lebar maksimal agar menyerupai layar HP */
+    margin: 40px auto; /* Posisi di tengah layar dengan jarak dari atas */
+    padding: 30px 20px;
+    background: #ffffff; /* Warna latar putih murni */
+    border-radius: 24px; /* Sudut kartu membulat modern */
+    box-shadow: 0 10px 30px rgba(32, 94, 108, 0.1); /* Bayangan elegan */
     text-align: center;
     box-sizing: border-box;
   }
 
   /* --- 2. HEADER --- */
   .header-icon {
-    font-size: 42px;
-    margin-bottom: 8px;
+    font-size: 48px;
+    margin-bottom: 10px;
   }
   
   .header-title {
     color: #205E6C;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 800;
     margin: 0;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
   }
   
   .header-subtitle {
-    color: #666;
+    color: #64748b;
     font-size: 0.9rem;
-    margin: 5px 0 20px 0;
+    margin: 5px 0 25px 0;
   }
 
   /* --- 3. MENU GRID --- */
   .menu-grid {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px; /* Jarak antar tombol sedikit dilebarkan */
   }
 
   /* KARTU MENU STANDAR */
@@ -53,31 +59,42 @@
     background: #205E6C;
     color: white;
     padding: 16px;
-    border-radius: 12px;
+    border-radius: 16px;
     text-decoration: none;
     display: flex;
     align-items: center;
     text-align: left;
-    gap: 12px;
-    transition: transform 0.1s;
+    gap: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
   }
   
+  .menu-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(32, 94, 108, 0.2);
+  }
+
   .menu-card:active {
     transform: scale(0.98);
   }
 
   /* WARNA KHUSUS KARTU DAYCARE */
   .menu-card.daycare {
-    background: linear-gradient(135deg, #FF7043, #F4511E); /* Oranye Ceria */
+    background: linear-gradient(135deg, #FF7043, #F4511E);
+    box-shadow: 0 4px 6px rgba(244, 81, 30, 0.2);
+  }
+  
+  .menu-card.daycare:hover {
+    box-shadow: 0 8px 15px rgba(244, 81, 30, 0.3);
   }
 
   /* ISI KARTU (ICON & TEXT) */
   .card-icon {
     font-size: 28px;
     background: rgba(255,255,255,0.2);
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,68 +109,117 @@
     font-size: 14px;
     font-weight: 700;
     display: block;
+    letter-spacing: 0.5px;
   }
   
   .card-desc {
     font-size: 12px;
-    opacity: 0.9;
+    opacity: 0.85;
+    margin-top: 2px;
+    display: block;
   }
 
   /* --- 4. TOMBOL DARURAT --- */
   .emergency-card {
-    background: #D32F2F;
+    background: linear-gradient(135deg, #EF5350, #D32F2F);
     color: white;
-    padding: 15px;
+    padding: 16px;
     border-radius: 50px;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-top: 25px; /* Jarak dari menu di atasnya */
-    box-shadow: 0 4px 15px rgba(211,47,47,0.3);
-    animation: pulse 2s infinite;
+    gap: 12px;
+    margin-top: 30px;
+    box-shadow: 0 6px 15px rgba(211,47,47,0.3);
+    transition: transform 0.2s;
   }
 
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-    100% { transform: scale(1); }
+  .emergency-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(211,47,47,0.4);
   }
 
-  /* --- 5. FOOTER --- */
+  /* --- 5. NOTIFIKASI & DIVIDER --- */
   .divider {
     height: 1px;
-    background: #ddd;
-    margin: 25px 0 15px 0;
+    background: #e2e8f0;
+    margin: 30px 0 20px 0;
   }
   
   .footer-notice {
-    background: #fdf2f2;
-    border-left: 4px solid #D32F2F;
-    padding: 12px;
-    border-radius: 6px;
+    background: #fef2f2;
+    border-left: 4px solid #EF4444;
+    padding: 15px;
+    border-radius: 8px;
     text-align: left;
   }
   
   .notice-title {
     font-weight: 700;
     font-size: 13px;
-    color: #D32F2F;
-    margin-bottom: 3px;
+    color: #B91C1C;
+    margin-bottom: 5px;
   }
   
   .notice-text {
     font-size: 12px;
-    color: #444;
-    line-height: 1.4;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  /* --- 6. FOTO SAMPUL --- */
+  .cover-photo {
+    /* Mengakali padding container agar foto menempel ke ujung layar/kartu */
+    margin: -30px -20px 20px -20px; 
+    height: 160px; /* Tinggi foto sampul */
+    border-radius: 24px 24px 0 0; /* Melengkung di sudut atas saja */
+    overflow: hidden;
+    background-color: #e2e8f0; /* Warna latar jika foto lambat dimuat */
+  }
+
+  .cover-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Menjaga proporsi gambar agar tidak gepeng */
+    display: block;
+  }
+
+  /* --- 7. FOOTER APLIKASI --- */
+  .app-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed #cbd5e1; /* Garis pemisah putus-putus yang elegan */
+    text-align: center;
+    color: #94a3b8;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  
+  .app-footer span {
+    font-weight: 700;
+    color: #64748b;
+  }
+
+  /* Responsif untuk layar HP yang sangat kecil */
+  @media (max-width: 480px) {
+    .container {
+      margin: 15px auto;
+      border-radius: 16px;
+    }
+    .cover-photo {
+      border-radius: 16px 16px 0 0; /* Menyesuaikan lengkungan dengan container di HP */
+    }
   }
 </style>
 </head>
 <body>
 
 <div class="container">
-  
+
+  <div class="cover-photo">
+    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foto Sampul Layanan">
+  </div>
   <div class="header-icon">🏢</div>
   <h1 class="header-title">Portal Layanan Peserta</h1>
   <p class="header-subtitle">Pusat Informasi & Bantuan</p>
@@ -196,7 +262,7 @@
       <span>❯</span>
     </a>
 
-    <a href="ramahanak.html" class="menu-card daycare">
+    <a href="ramah-anak.html" class="menu-card daycare">
       <div class="card-icon">🧸</div>
       <div class="card-content">
         <span class="card-title">RUANG RAMAH ANAK</span>
@@ -206,6 +272,7 @@
     </a>
 
   </div> 
+
   <a href="tel:0800000004" class="emergency-card">
     <span style="font-size: 20px;">🆘</span>
     <div style="text-align: left;">
@@ -223,7 +290,11 @@
     </div>
   </div>
 
-</div>
+  <div class="app-footer">
+    <p>Portal Layanan Peserta &copy; 2026<br>
+    <span>Pusat Informasi & Pengaduan Fasilitas</span></p>
+  </div>
+  </div>
 
 </body>
 </html>
