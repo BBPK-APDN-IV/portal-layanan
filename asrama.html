@@ -3,104 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layanan Asrama</title>
 <style>
-  /* RESET & BASE */
+  /* --- RESET & DASAR --- */
   html, body {
     margin: 0; padding: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-    background: transparent;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f0f4f8; 
+    overflow-x: hidden;
   }
 
-  /* CONTAINER */
+  /* --- KONTAINER UTAMA --- */
   .container {
-    padding: 15px;
-    max-width: 600px; /* Sedikit diperlebar agar lega */
-    margin: 0 auto;
+    max-width: 480px; 
+    margin: 40px auto; 
+    padding: 30px 20px;
+    background: #ffffff; 
+    border-radius: 24px; 
+    box-shadow: 0 10px 30px rgba(32, 94, 108, 0.1); 
     box-sizing: border-box;
   }
-
-  /* --- TOMBOL KEMBALI (MODERN KAPSUL) --- */
-  .btn-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #ffffff;
-    color: #205E6C;
-    border: 1px solid #205E6C;
-    padding: 8px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: all 0.2s ease;
-    margin-bottom: 25px; /* Jarak ke Judul */
-  }
-  .btn-back:hover {
-    background-color: #205E6C;
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(32, 94, 108, 0.2);
-  }
   
-  /* KARTU */
-  .card {
-    background: #205E6C;
-    color: white;
-    border-radius: 16px; /* Lebih membulat modern */
-    padding: 18px;
+  @media (max-width: 480px) {
+    .container { margin: 15px auto; border-radius: 16px; }
+  }
+
+  /* --- TOMBOL KEMBALI --- */
+  .btn-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    background-color: #ffffff; color: #205E6C; border: 1px solid #205E6C;
+    padding: 8px 20px; border-radius: 50px; text-decoration: none;
+    font-size: 13px; font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease; margin-bottom: 25px; 
+  }
+  .btn-back:hover { background-color: #205E6C; color: #ffffff; }
+
+  /* --- HEADER --- */
+  .header-section { text-align: center; margin-bottom: 25px; }
+  .page-title { color: #205E6C; font-weight: 800; font-size: 22px; margin: 0; }
+  .page-subtitle { font-size: 13px; color: #64748b; margin-top: 5px; }
+
+  /* --- CUSTOM FORM TICKET --- */
+  .ticket-form-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  }
+
+  .form-header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(32, 94, 108, 0.15);
-    transition: transform 0.2s;
-  }
-  .card:hover { transform: translateY(-3px); }
-
-  /* ICON */
-  .icon {
-    font-size: 26px;
-    background: rgba(255,255,255,0.2);
-    width: 52px; height: 52px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 12px;
   }
 
-  /* CONTENT */
-  .content { flex-grow: 1; min-width: 0; }
-  .title { font-size: 16px; font-weight: 700; margin-bottom: 4px; display: block; }
-  .desc { font-size: 12px; opacity: 0.9; margin-bottom: 10px; line-height: 1.3; }
+  .form-header-icon { font-size: 24px; }
+  .form-header-title { font-weight: 800; color: #205E6C; font-size: 16px; }
 
-  /* TOMBOL */
-  .btn {
-    display: inline-block;
-    background: #ffffff;
-    color: #205E6C;
-    text-decoration: none;
-    padding: 8px 18px; /* Area sentuh lebih besar */
-    border-radius: 50px;
-    font-size: 11px;
+  .form-group { margin-bottom: 16px; }
+  
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 8px;
+  }
+
+  .form-group select, 
+  .form-group input[type="text"], 
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #f8fafc;
+    transition: all 0.2s;
+  }
+
+  .form-group select:focus, 
+  .form-group input[type="text"]:focus, 
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #205E6C;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(32, 94, 108, 0.1);
+  }
+
+  /* Desain khusus input foto */
+  .form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    font-size: 12px;
+    background-color: #f8fafc;
+    color: #475569;
+  }
+
+  .btn-submit {
+    background: #205E6C;
+    color: white;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 10px;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
   }
-  .btn:active { background: #e0e0e0; transform: scale(0.95); }
+  
+  .btn-submit:hover { background: #164652; }
+  .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 
-  /* FOOTER INFO */
+  /* --- FOOTER INFO --- */
   .footer-info {
-    margin-top: 25px;
-    padding: 15px;
-    background: #f4f4f4; /* Background abu tipis agar beda dari bg situs */
-    border-radius: 8px;
-    border-left: 4px solid #205E6C;
-    display: flex; gap: 10px;
+    margin-top: 25px; padding: 15px; background: #f8fafc; 
+    border-radius: 12px; border-left: 4px solid #205E6C;
+    display: flex; gap: 10px; text-align: left;
   }
   .footer-icon { font-size: 20px; }
-  .footer-text { font-size: 12px; line-height: 1.5; color: #444; } /* Warna Gelap */
-  .footer-title { font-weight: 700; display: block; color: #205E6C; margin-bottom: 2px; }
+  .footer-text { font-size: 12px; line-height: 1.5; color: #475569; } 
+  .footer-title { font-weight: 700; display: block; color: #205E6C; margin-bottom: 4px; }
 
 </style>
 </head>
@@ -108,53 +143,127 @@
 
 <div class="container">
 
-  <a href="index.html" class="btn-back">
-    <span>❮</span> Menu Utama
-  </a>
-
-  <div class="card">
-    <div class="icon">❄️</div> <div class="content">
-      <div class="title">Kerusakan AC</div>
-      <div class="desc">AC panas, bocor, atau mati</div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScr6CZJooTZyvTDafQXy90dAJpeuas9JOt1XVNhON_7kA9lNA/viewform?usp=pp_url&entry.997997004=AC" target="_blank" class="btn">LAPORKAN</a>
-    </div>
+  <div style="text-align: left;">
+    <a href="index.html" class="btn-back">
+      <span>❮</span> Menu Utama
+    </a>
   </div>
 
-  <div class="card">
-    <div class="icon">🚿</div>
-    <div class="content">
-      <div class="title">Air & Pipa</div>
-      <div class="desc">Kran macet, air mati/keruh</div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScr6CZJooTZyvTDafQXy90dAJpeuas9JOt1XVNhON_7kA9lNA/viewform?usp=pp_url&entry.997997004=Air+%26+Pipa" target="_blank" class="btn">LAPORKAN</a>
-    </div>
+  <div class="header-section">
+    <h2 class="page-title">Layanan Asrama</h2>
+    <p class="page-subtitle">Pusat Pelaporan Fasilitas & Hunian</p>
   </div>
 
-  <div class="card">
-    <div class="icon">🧹</div>
-    <div class="content">
-      <div class="title">Kebersihan</div>
-      <div class="desc">Kamar kotor / sampah menumpuk</div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScr6CZJooTZyvTDafQXy90dAJpeuas9JOt1XVNhON_7kA9lNA/viewform?usp=pp_url&entry.997997004=Kebersihan" target="_blank" class="btn">LAPORKAN</a>
+  <div class="ticket-form-card">
+    <div class="form-header">
+      <div class="form-header-icon">📋</div>
+      <div class="form-header-title">Buat Laporan Baru</div>
     </div>
-  </div>
+    
+    <form id="formAsrama" name="submit-to-google-sheet">
+      
+      <div class="form-group">
+        <label for="nama">Nama Pelapor</label>
+        <input type="text" id="nama" name="nama" placeholder="Contoh: Budi Santoso" required>
+      </div>
 
-  <div class="card">
-    <div class="icon">💡</div> <div class="content">
-      <div class="title">Listrik & Perabot</div>
-      <div class="desc">Lampu putus, lemari rusak, dll</div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScr6CZJooTZyvTDafQXy90dAJpeuas9JOt1XVNhON_7kA9lNA/viewform?usp=pp_url&entry.997997004=Listrik+%26+Perabot" target="_blank" class="btn">LAPORKAN</a>
-    </div>
+      <div class="form-group">
+        <label for="kategori">Kategori Kendala</label>
+        <select id="kategori" name="kategori" required>
+          <option value="" disabled selected>-- Pilih jenis kerusakan --</option>
+          <option value="AC">❄️ Kerusakan AC</option>
+          <option value="Air & Pipa">🚿 Saluran Air & Pipa</option>
+          <option value="Kebersihan">🧹 Kebersihan Kamar</option>
+          <option value="Listrik & Perabot">💡 Listrik & Perabot</option>
+          <option value="Lainnya">⚙️ Lainnya</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="kamar">Nomor Kamar</label>
+        <input type="text" id="kamar" name="kamar" placeholder="Contoh: Gedung A - 101" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="keluhan">Detail Kerusakan / Keluhan</label>
+        <textarea id="keluhan" name="keluhan" rows="3" placeholder="Jelaskan detail kendala di sini..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="foto">Foto Kendala <span style="font-weight: normal; color: #64748b;">(Opsional)</span></label>
+        <input type="file" id="foto" accept="image/png, image/jpeg, image/jpg">
+        <div style="font-size: 11px; color: #94a3b8; margin-top: 5px;">*Lampirkan foto jika ada untuk mempercepat proses teknisi.</div>
+      </div>
+      
+      <button type="submit" class="btn-submit" id="btnSubmit">KIRIM LAPORAN</button>
+    </form>
   </div>
 
   <div class="footer-info">
     <div class="footer-icon">ℹ️</div>
     <div class="footer-text">
-      <span class="footer-title">Alur Laporan</span>
-      Laporan Anda akan masuk ke WhatsApp teknisi jaga. Mohon tunggu respon maksimal 1x24 jam.
+      <span class="footer-title">Alur Laporan Terpadu</span>
+      Data yang Anda kirim akan otomatis masuk ke sistem kami. Tim teknisi akan menuju ke kamar Anda secepatnya.
     </div>
   </div>
 
 </div>
+
+<script>
+  // PENTING: GANTI TEKS DI BAWAH INI DENGAN URL WEB APP BARU MILIK ANDA!
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbykjhK-hfKiEAhZWV81QIlDP-bIHbXAPPRVsNBcGy5TRDAFgNsh2jrhWAX2D2-IVD7hfw/exec';
+  
+  const form = document.forms['submit-to-google-sheet'];
+  const btnSubmit = document.getElementById('btnSubmit');
+  const fileInput = document.getElementById('foto');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault(); 
+    
+    // Animasi Loading
+    const originalText = btnSubmit.innerHTML;
+    btnSubmit.innerHTML = 'MENGIRIM... ⏳';
+    btnSubmit.disabled = true;
+
+    const formData = new FormData(form);
+    const file = fileInput.files[0];
+
+    // Logika pengiriman
+    if (file) {
+      btnSubmit.innerHTML = 'MENGUNGGAH FOTO... ⏳';
+      // Jika ada foto, ubah foto jadi Base64
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const base64Data = event.target.result.split(',')[1];
+        formData.append('fileData', base64Data);
+        formData.append('mimeType', file.type);
+        formData.append('fileName', file.name);
+        
+        sendDataToGAS(formData, originalText);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // Jika tidak ada foto, langsung kirim
+      sendDataToGAS(formData, originalText);
+    }
+  });
+
+  function sendDataToGAS(formData, originalText) {
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(response => {
+        alert('✅ Laporan berhasil dikirim! Tim kami akan segera menindaklanjuti.');
+        form.reset(); 
+        btnSubmit.innerHTML = originalText;
+        btnSubmit.disabled = false;
+      })
+      .catch(error => {
+        alert('❌ Gagal mengirim laporan. Periksa koneksi internet Anda atau hubungi petugas.');
+        console.error('Error!', error.message);
+        btnSubmit.innerHTML = originalText;
+        btnSubmit.disabled = false;
+      });
+  }
+</script>
 
 </body>
 </html>
