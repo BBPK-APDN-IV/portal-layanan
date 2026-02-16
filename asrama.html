@@ -210,8 +210,8 @@
 </div>
 
 <script>
-  // PENTING: GANTI TEKS DI BAWAH INI DENGAN URL WEB APP BARU MILIK ANDA!
-  const scriptURL = 'https://script.google.com/macros/s/AKfycby5tQuCqe8qmDgYdAXjGkAYMQsiDWnGRFJ2_XuADfTXKXrXuXGCaghER9xS6B1DVLvgzg/exec';
+  // PENTING: GANTI DENGAN URL WEB APP BARU YANG ANDA SALIN DI LANGKAH 2
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxoiN9xuYPh8Q_HCqXsYm-_6m_ZOanEj_paGapTke_ya0GZwnCH8veM034H4dxmJY7aCg/exec';
   
   const form = document.forms['submit-to-google-sheet'];
   const btnSubmit = document.getElementById('btnSubmit');
@@ -220,7 +220,6 @@
   form.addEventListener('submit', e => {
     e.preventDefault(); 
     
-    // Animasi Loading
     const originalText = btnSubmit.innerHTML;
     btnSubmit.innerHTML = 'MENGIRIM... ⏳';
     btnSubmit.disabled = true;
@@ -228,10 +227,8 @@
     const formData = new FormData(form);
     const file = fileInput.files[0];
 
-    // Logika pengiriman
     if (file) {
       btnSubmit.innerHTML = 'MENGUNGGAH FOTO... ⏳';
-      // Jika ada foto, ubah foto jadi Base64
       const reader = new FileReader();
       reader.onload = function(event) {
         const base64Data = event.target.result.split(',')[1];
@@ -243,22 +240,22 @@
       };
       reader.readAsDataURL(file);
     } else {
-      // Jika tidak ada foto, langsung kirim
       sendDataToGAS(formData, originalText);
     }
   });
 
   function sendDataToGAS(formData, originalText) {
-    fetch(scriptURL, { method: 'POST', body: formData })
+    // Penambahan mode: 'no-cors' agar browser tidak memblokir
+    fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' })
       .then(response => {
-        alert('✅ Laporan berhasil dikirim! Petugas kami akan segera menindaklanjuti.');
+        alert('✅ Laporan berhasil dikirim! Tim kami akan segera menindaklanjuti.');
         form.reset(); 
         btnSubmit.innerHTML = originalText;
         btnSubmit.disabled = false;
       })
       .catch(error => {
         alert('❌ Gagal mengirim laporan. Periksa koneksi internet Anda atau hubungi petugas.');
-        console.error('Error!', error.message);
+        console.error('Error!', error);
         btnSubmit.innerHTML = originalText;
         btnSubmit.disabled = false;
       });
@@ -267,6 +264,7 @@
 
 </body>
 </html>
+
 
 
 
