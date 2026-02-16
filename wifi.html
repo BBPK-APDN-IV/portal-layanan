@@ -247,7 +247,7 @@
 </div>
 
 <script>
-  // FUNGSI 1: SMART CONNECT (TIDAK DIHILANGKAN)
+  // FUNGSI 1: SMART CONNECT WIFI
   function smartConnect(btn, ssid, password) {
     var originalText = btn.innerHTML;
     btn.innerHTML = "Mencoba...";
@@ -266,8 +266,8 @@
   }
 
   // FUNGSI 2: PENGIRIM FORMULIR LAPORAN GANGGUAN WIFI
-  // PENTING: GANTI TEKS DI BAWAH INI DENGAN URL WEB APP WIFI MILIK ANDA!
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwrgkkpOxjtCvzlwFA5QqDK-VquDkKw-kQJjENijmF803WJ1nO-tISzpgd1KNxwLt_-/exec';
+  // PENTING: GANTI DENGAN URL WEB APP WIFI ANDA
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwSdXcIR0suMVxpdUK96jOIha6L-QePWKgkSW1PUe6x8waCltcX7IV41VruvLDHlO8N/exec';
   
   const form = document.forms['submit-to-google-sheet'];
   const btnSubmit = document.getElementById('btnSubmit');
@@ -301,7 +301,8 @@
   });
 
   function sendDataToGAS(formData, originalText) {
-    fetch(scriptURL, { method: 'POST', body: formData })
+    // Penambahan mode: 'no-cors' agar tidak diblokir browser
+    fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' })
       .then(response => {
         alert('✅ Laporan gangguan Wi-Fi berhasil dikirim! Tim IT akan segera mengecek.');
         form.reset(); 
@@ -310,7 +311,7 @@
       })
       .catch(error => {
         alert('❌ Gagal mengirim laporan. Periksa koneksi internet Anda atau lapor manual ke petugas.');
-        console.error('Error!', error.message);
+        console.error('Error!', error);
         btnSubmit.innerHTML = originalText;
         btnSubmit.disabled = false;
       });
@@ -319,5 +320,6 @@
 
 </body>
 </html>
+
 
 
