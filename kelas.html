@@ -209,8 +209,8 @@
 </div>
 
 <script>
-  // PENTING: GANTI TEKS DI BAWAH INI DENGAN URL WEB APP KELAS MILIK ANDA!
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwSTRVu86tpAblLiSlwcUnXf9mI-gsB32HtxbWpbZUN_CFat6H2pjFW2qNMAph3el6fbg/exec';
+  // PENTING: GANTI DENGAN URL WEB APP KELAS ANDA
+  const scriptURL = 'MASUKKAN_URL_WEB_APP_ANDA_DISINI';
   
   const form = document.forms['submit-to-google-sheet'];
   const btnSubmit = document.getElementById('btnSubmit');
@@ -219,7 +219,6 @@
   form.addEventListener('submit', e => {
     e.preventDefault(); 
     
-    // Animasi Loading
     const originalText = btnSubmit.innerHTML;
     btnSubmit.innerHTML = 'MENGIRIM... ⏳';
     btnSubmit.disabled = true;
@@ -227,10 +226,8 @@
     const formData = new FormData(form);
     const file = fileInput.files[0];
 
-    // Logika pengiriman
     if (file) {
       btnSubmit.innerHTML = 'MENGUNGGAH FOTO... ⏳';
-      // Jika ada foto, ubah foto jadi Base64
       const reader = new FileReader();
       reader.onload = function(event) {
         const base64Data = event.target.result.split(',')[1];
@@ -242,22 +239,22 @@
       };
       reader.readAsDataURL(file);
     } else {
-      // Jika tidak ada foto, langsung kirim
       sendDataToGAS(formData, originalText);
     }
   });
 
   function sendDataToGAS(formData, originalText) {
+    // Penambahan mode: 'no-cors' agar tidak diblokir browser
     fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' })
       .then(response => {
-        alert('✅ Laporan berhasil dikirim! Petugas kami akan segera menindaklanjuti.');
+        alert('✅ Laporan berhasil dikirim! Panitia akan segera menindaklanjuti.');
         form.reset(); 
         btnSubmit.innerHTML = originalText;
         btnSubmit.disabled = false;
       })
       .catch(error => {
         alert('❌ Gagal mengirim laporan. Periksa koneksi internet Anda atau hubungi petugas.');
-        console.error('Error!', error.message);
+        console.error('Error!', error);
         btnSubmit.innerHTML = originalText;
         btnSubmit.disabled = false;
       });
@@ -266,6 +263,7 @@
 
 </body>
 </html>
+
 
 
 
