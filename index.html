@@ -6,7 +6,6 @@
 <title>Portal Layanan Peserta - BBPK-APDN IV</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fragment+Mono&display=swap" rel="stylesheet">
 
 <style>
@@ -376,6 +375,62 @@
     .cine-line-2 { font-size: 13px; letter-spacing: 1.2px; }
     .cine-line-3 { font-size: 11px; }
   }
+
+  /* =========================================
+     TAMBAHAN BARU DARI SINI: BANNER & ANIMASI
+     ========================================= */
+
+  /* Animasi Transisi Halaman (Fade In) */
+  @keyframes fadeMasuk {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Terapkan Animasi ke Kontainer Utama */
+  .container {
+    animation: fadeMasuk 0.6s ease-out forwards;
+  }
+
+  /* Desain Hero Banner Ucapan */
+  .hero-banner {
+    background: linear-gradient(135deg, #205E6C 0%, #113a43 100%);
+    color: white;
+    padding: 20px 20px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(32, 94, 108, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-banner::after {
+    content: ""; position: absolute; top: -30px; right: -30px;
+    width: 150px; height: 150px; background: rgba(255, 255, 255, 0.1); border-radius: 50%;
+  }
+
+  .hero-banner::before {
+    content: ""; position: absolute; bottom: -40px; right: 50px;
+    width: 100px; height: 100px; background: rgba(255, 255, 255, 0.05); border-radius: 50%;
+  }
+
+  .hero-greeting {
+    font-size: 12px; font-weight: 800; opacity: 0.95;
+    margin-bottom: 8px; display: inline-block;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px 16px; border-radius: 50px;
+    backdrop-filter: blur(5px);
+    position: relative; z-index: 2;
+  }
+
+  .hero-subtitle {
+    font-size: 13px; opacity: 0.85; margin: 0 auto;
+    line-height: 1.5; max-width: 95%; position: relative; z-index: 2;
+  }
 </style>
 </head>
 <body>
@@ -393,6 +448,11 @@
       <div class="cine-line cine-line-3">Pusat Informasi & Bantuan</div>
     </div>
   </header>
+
+  <div class="hero-banner">
+    <span class="hero-greeting" id="greeting-text">Selamat Datang 👋</span>
+    <p class="hero-subtitle">Silakan pilih layanan yang Anda butuhkan. Tim kami siap merespon demi kenyamanan Anda selama diklat.</p>
+  </div>
   <div class="menu-grid">
     <a href="asrama.html" class="menu-card">
       <div class="card-icon">🏠</div>
@@ -459,7 +519,6 @@
 
 </div> 
 
-
 <footer class="instansi-footer">
   <div class="footer-grid">
     
@@ -491,8 +550,19 @@
 
   <div class="footer-bottom-bar">
     Copyright &copy; 2026 Kementerian Dalam Negeri <br>
-    | BBPK-APDN IV | Design by Nafiqa Harseno 
+    | BBPK-APDN IV | Design by Nafiqa Harseno
   </div>
 </footer>
+
+<script>
+  const hour = new Date().getHours();
+  let greeting = "Selamat Malam 🌙";
+  
+  if (hour >= 4 && hour < 11) greeting = "Selamat Pagi 🌅";
+  else if (hour >= 11 && hour < 15) greeting = "Selamat Siang ☀️";
+  else if (hour >= 15 && hour < 18) greeting = "Selamat Sore 🌤️";
+  
+  document.getElementById('greeting-text').innerText = greeting;
+</script>
 </body>
 </html>
