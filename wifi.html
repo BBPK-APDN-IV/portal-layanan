@@ -122,6 +122,24 @@
   .btn-submit:hover { background: #b91c1c; }
   .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 
+  /* =========================================
+     ANIMASI TRANSISI (LEBIH TERASA & ELEGAN)
+     ========================================= */
+  .container {
+    opacity: 0; /* Pastikan sembunyi dulu sebelum animasi mulai */
+    animation: fadeMasuk 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes fadeMasuk {
+    0% { 
+      opacity: 0; 
+      transform: translateY(40px) scale(0.96); 
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0) scale(1); 
+    }
+  }
 </style>
 </head>
 <body>
@@ -320,6 +338,7 @@
 
 </body>
 </html>
+
 
 
 
