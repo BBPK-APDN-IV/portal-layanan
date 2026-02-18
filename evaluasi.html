@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survey Evaluasi - BBPK</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* DASAR & ANIMASI */
+  html, body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; }
+  @keyframes fadeMasuk { from { opacity: 0; transform: translateY(40px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .container { max-width: 480px; margin: 20px auto; padding: 25px 20px; background: #ffffff; border-radius: 24px; box-shadow: 0 10px 30px rgba(32, 94, 108, 0.1); opacity: 0; animation: fadeMasuk 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; box-sizing: border-box; }
+  @media (max-width: 480px) { .container { margin: 15px; border-radius: 16px; padding: 20px 15px; } }
+
+  /* --- TOMBOL KEMBALI --- */
+  .btn-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    background-color: #ffffff; color: #205E6C; border: 1px solid #205E6C;
+    padding: 8px 20px; border-radius: 50px; text-decoration: none;
+    font-size: 13px; font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease; margin-bottom: 25px; 
+  }
+  .btn-back:hover { background-color: #205E6C; color: #ffffff; }
+
+  /* HEADER STANDAR LAYANAN (WARNA TEAL BBPK) */
+  .page-header { background: linear-gradient(135deg, #205E6C 0%, #113a43 100%); color: white; padding: 25px 20px; border-radius: 16px; text-align: center; margin-bottom: 25px; box-shadow: 0 6px 15px rgba(32, 94, 108, 0.2); }
+  .page-header h1 { margin: 0 0 5px 0; font-size: 22px; font-weight: 800; }
+  .page-header p { margin: 0; font-size: 13px; opacity: 0.9; }
+
+  /* FORM GROUPING (A, B, C, D) */
+  .form-section { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 20px; }
+  .section-title { font-size: 15px; font-weight: 700; color: #205E6C; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+  
+  .form-group { margin-bottom: 15px; text-align: left; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px; }
+  .form-control { width: 100%; padding: 12px 15px; border: 1.5px solid #cbd5e1; border-radius: 12px; font-size: 14px; background: #ffffff; color: #1e293b; box-sizing: border-box; transition: all 0.3s; }
+  .form-control:focus { border-color: #205E6C; outline: none; box-shadow: 0 0 0 3px rgba(32, 94, 108, 0.1); }
+  textarea.form-control { resize: vertical; min-height: 80px; }
+
+  /* TOMBOL SUBMIT */
+  .btn-submit { background: linear-gradient(135deg, #205E6C 0%, #113a43 100%); color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: transform 0.2s; box-shadow: 0 6px 15px rgba(32, 94, 108, 0.3); margin-top: 10px; }
+  .btn-submit:hover { transform: translateY(-2px); }
+  
+  /* LOADING OVERLAY */
+  #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 999; flex-direction: column; justify-content: center; align-items: center; }
+  .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #205E6C; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-bottom: 15px; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <div style="text-align: left;">
+    <a href="index.html" class="btn-back">
+      <span>❮</span> Menu Utama
+    </a>
+  </div>
+
+  <div class="page-header">
+    <h1>Survey & Evaluasi</h1>
+    <p>Bantu kami meningkatkan kualitas layanan BBPK</p>
+  </div>
+
+  <form id="formEvaluasi">
+    
+    <div class="form-section">
+      <div class="form-group">
+        <label>Nama Anda (Opsional)</label>
+        <input type="text" class="form-control" name="nama" placeholder="Boleh dikosongkan">
+      </div>
+      <div class="form-group">
+        <label>Nama Diklat / Angkatan *</label>
+        <input type="text" class="form-control" name="diklat" placeholder="Contoh: Latsar CPNS Angkatan IV" required>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title">A. Tenaga Pengajar</h3>
+      <div class="form-group"><label>1. Penguasaan Materi</label>
+        <select class="form-control" name="a1" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>2. Kejelasan Penyampaian</label>
+        <select class="form-control" name="a2" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>3. Metode Pembelajaran</label>
+        <select class="form-control" name="a3" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>4. Interaksi dengan Peserta</label>
+        <select class="form-control" name="a4" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>5. Ketepatan Waktu</label>
+        <select class="form-control" name="a5" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title">B. Tim Penyelenggara</h3>
+      <div class="form-group"><label>1. Kejelasan Informasi Awal</label>
+        <select class="form-control" name="b1" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>2. Ketepatan Jadwal Kegiatan</label>
+        <select class="form-control" name="b2" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>3. Respons Terhadap Kendala</label>
+        <select class="form-control" name="b3" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>4. Pelayanan Administrasi</label>
+        <select class="form-control" name="b4" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>5. Fasilitasi Kebutuhan Peserta</label>
+        <select class="form-control" name="b5" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title">C. Sarana Prasarana</h3>
+      <div class="form-group"><label>1. Ruang Kelas</label>
+        <select class="form-control" name="c1" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>2. Asrama / Penginapan</label>
+        <select class="form-control" name="c2" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>3. Konsumsi</label>
+        <select class="form-control" name="c3" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>4. Kebersihan Fasilitas</label>
+        <select class="form-control" name="c4" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+      <div class="form-group"><label>5. Jaringan Internet (Wi-Fi)</label>
+        <select class="form-control" name="c5" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title">D. Masukan & Saran</h3>
+      <div class="form-group">
+        <label>1. Kritik Utama Anda</label>
+        <textarea class="form-control" name="d1" placeholder="Apa yang paling mengecewakan/kurang?"></textarea>
+      </div>
+      <div class="form-group">
+        <label>2. Saran Perbaikan</label>
+        <textarea class="form-control" name="d2" placeholder="Apa yang perlu diperbaiki kedepannya?"></textarea>
+      </div>
+      <div class="form-group">
+        <label>3. Layanan yang perlu ditingkatkan</label>
+        <textarea class="form-control" name="d3" placeholder="Contoh: Menu makanan, kebersihan toilet, dsb."></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit">Kirim Evaluasi 🚀</button>
+  </form>
+
+</div>
+
+<div id="loading">
+  <div class="spinner"></div>
+  <p style="font-weight:bold; color:#205E6C;">Mengirim Hasil Evaluasi...</p>
+</div>
+
+<script>
+  // Script untuk menangkap Form (URL Google Apps Script akan dimasukkan nanti)
+  const scriptURL = 'MASUKKAN_URL_WEB_APP_ANDA_DISINI'; 
+  const form = document.getElementById('formEvaluasi');
+  const loading = document.getElementById('loading');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    loading.style.display = 'flex'; // Munculkan loading
+    
+    // Trik anti-cors agar tidak error saat dikirim
+    fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+      .then(() => {
+        loading.style.display = 'none';
+        alert("Terima kasih! Evaluasi Anda telah berhasil disimpan.");
+        form.reset(); // Kosongkan form setelah sukses
+        window.location.href = "index.html"; // Balik ke beranda
+      })
+      .catch(error => {
+        loading.style.display = 'none';
+        alert('Maaf, terjadi kesalahan saat mengirim evaluasi.');
+      });
+  });
+</script>
+
+</body>
+</html>
