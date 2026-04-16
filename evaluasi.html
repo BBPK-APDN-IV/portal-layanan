@@ -37,14 +37,14 @@
 
   .page-header { background: linear-gradient(135deg, #205E6C 0%, #113a43 100%); color: white; padding: 25px 20px; border-radius: 16px; text-align: center; margin-bottom: 25px; box-shadow: 0 6px 15px rgba(32, 94, 108, 0.2); }
   .page-header h1 { margin: 0 0 5px 0; font-size: 20px; font-weight: 800; }
-  .page-header p { margin: 0; font-size: 12px; opacity: 0.9; }
+  .page-header p { margin: 0; font-size: 12px; opacity: 0.9; line-height: 1.4;}
 
-  /* --- GAYA MENU CARDS (TAMPILAN AWAL) --- */
+  /* --- GAYA MENU CARDS --- */
   #evaluasi-menu { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
   
   .menu-card {
     background: #ffffff; border: 2px solid #e2e8f0; border-radius: 16px;
-    padding: 20px; display: flex; align-items: center; gap: 15px;
+    padding: 16px; display: flex; align-items: center; gap: 15px;
     cursor: pointer; transition: all 0.3s ease; text-align: left;
   }
   .menu-card:hover {
@@ -52,30 +52,32 @@
     box-shadow: 0 8px 20px rgba(32, 94, 108, 0.1);
   }
   .menu-card-icon {
-    font-size: 28px; color: #205E6C; background-color: rgba(32, 94, 108, 0.1);
-    width: 60px; height: 60px; border-radius: 12px;
+    font-size: 24px; color: #205E6C; background-color: rgba(32, 94, 108, 0.1);
+    width: 50px; height: 50px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .menu-card-content { flex-grow: 1; }
-  .menu-card-title { font-weight: 700; color: #205E6C; font-size: 15px; display: block; margin-bottom: 2px;}
-  .menu-card-desc { font-size: 12px; color: #64748b; display: block; line-height: 1.4; }
-  .menu-card-arrow { color: #cbd5e1; font-size: 18px; }
+  .menu-card-title { font-weight: 700; color: #205E6C; font-size: 14px; display: block; margin-bottom: 2px;}
+  .menu-card-desc { font-size: 11px; color: #64748b; display: block; line-height: 1.4; }
+  .menu-card-arrow { color: #cbd5e1; font-size: 16px; }
   .menu-card:hover .menu-card-arrow { color: #205E6C; transform: translateX(3px); transition: transform 0.2s; }
 
-  /* --- GAYA FORM (DISEMBUNYIKAN AWALNYA) --- */
-  .form-evaluasi { display: none; } /* Default sembunyi */
+  /* --- GAYA FORM --- */
+  .form-evaluasi { display: none; } 
   
   .form-section { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 20px; }
-  .section-title { font-size: 15px; font-weight: 700; color: #205E6C; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;}
+  .section-title { font-size: 14px; font-weight: 700; color: #205E6C; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;}
   
   .form-group { margin-bottom: 15px; text-align: left; }
-  .form-group label { display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px; }
-  .form-control { width: 100%; padding: 12px 15px; border: 1.5px solid #cbd5e1; border-radius: 12px; font-size: 14px; background: #ffffff; color: #1e293b; box-sizing: border-box; transition: all 0.3s; }
+  .form-group label { display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 6px; line-height: 1.4; }
+  .form-control { width: 100%; padding: 12px 15px; border: 1.5px solid #cbd5e1; border-radius: 12px; font-size: 13px; background: #ffffff; color: #1e293b; box-sizing: border-box; transition: all 0.3s; }
   .form-control:focus { border-color: #205E6C; outline: none; box-shadow: 0 0 0 3px rgba(32, 94, 108, 0.1); }
   textarea.form-control { resize: vertical; min-height: 80px; }
+  
+  .info-box { background-color: #e0f2fe; border-left: 4px solid #0284c7; padding: 12px; border-radius: 8px; font-size: 11px; color: #0369a1; margin-bottom: 15px; line-height: 1.5;}
 
   /* TOMBOL SUBMIT */
-  .btn-submit { background: linear-gradient(135deg, #205E6C 0%, #113a43 100%); color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: transform 0.2s; box-shadow: 0 6px 15px rgba(32, 94, 108, 0.3); margin-top: 10px; }
+  .btn-submit { background: linear-gradient(135deg, #205E6C 0%, #113a43 100%); color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; transition: transform 0.2s; box-shadow: 0 6px 15px rgba(32, 94, 108, 0.3); margin-top: 10px; }
   .btn-submit:hover { transform: translateY(-2px); }
   
   /* LOADING OVERLAY */
@@ -103,135 +105,373 @@
   </div>
 
   <div id="evaluasi-menu">
-    
-    <div class="menu-card" onclick="bukaForm('diklat')">
-      <div class="menu-card-icon">
-        <i class="fa-solid fa-chalkboard-user"></i>
-      </div>
+    <div class="menu-card" onclick="bukaForm('penyelenggara')">
+      <div class="menu-card-icon"><i class="fa-solid fa-users-gear"></i></div>
       <div class="menu-card-content">
-        <span class="menu-card-title">Evaluasi Tim Diklat</span>
-        <span class="menu-card-desc">Penilaian Tenaga Pengajar & Tim Penyelenggara</span>
+        <span class="menu-card-title">1. Tim Penyelenggara Diklat</span>
+        <span class="menu-card-desc">Evaluasi kinerja panitia dan manajemen penyelenggaraan</span>
+      </div>
+      <div class="menu-card-arrow">❯</div>
+    </div>
+
+    <div class="menu-card" onclick="bukaForm('pengajar')">
+      <div class="menu-card-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+      <div class="menu-card-content">
+        <span class="menu-card-title">2. Tenaga Pengajar / WI</span>
+        <span class="menu-card-desc">Evaluasi penyajian materi oleh Widyaiswara</span>
+      </div>
+      <div class="menu-card-arrow">❯</div>
+    </div>
+
+    <div class="menu-card" onclick="bukaForm('skm')">
+      <div class="menu-card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+      <div class="menu-card-content">
+        <span class="menu-card-title">3. Survei Kepuasan Masyarakat</span>
+        <span class="menu-card-desc">SKM Sesuai PermenPAN RB No. 14 Tahun 2017</span>
       </div>
       <div class="menu-card-arrow">❯</div>
     </div>
 
     <div class="menu-card" onclick="bukaForm('sarpras')">
-      <div class="menu-card-icon">
-        <i class="fa-solid fa-building-wheat"></i>
-      </div>
+      <div class="menu-card-icon"><i class="fa-solid fa-building-wheat"></i></div>
       <div class="menu-card-content">
-        <span class="menu-card-title">Evaluasi Sarana Prasarana</span>
-        <span class="menu-card-desc">Penilaian Asrama, Kelas, Konsumsi, & Wi-Fi</span>
+        <span class="menu-card-title">4. Sarana Prasarana Umum</span>
+        <span class="menu-card-desc">Evaluasi fasilitas umum (Asrama, Kelas, Konsumsi)</span>
       </div>
       <div class="menu-card-arrow">❯</div>
     </div>
-
   </div>
 
-  <form id="form-diklat" class="form-evaluasi formEvaluasiAjax">
-    <input type="hidden" name="jenis_evaluasi" value="Tim Diklat">
+ <form id="form-penyelenggara" class="form-evaluasi formEvaluasiAjax">
+    <input type="hidden" name="jenis_evaluasi" value="Penyelenggara">
 
     <div class="form-section">
-      <div class="form-group">
-        <label>Nama Anda (Opsional)</label>
-        <input type="text" class="form-control" name="nama" placeholder="Boleh dikosongkan">
+      <h3 class="section-title"><i class="fa-solid fa-id-card"></i> Identitas</h3>
+      <div class="form-group"><label>Nama Lengkap <span style="color: red;">*</span></label><input type="text" class="form-control" name="nama_peserta" required></div>
+      <div class="form-group"><label>Jenis Diklat / Pelatihan <span style="color: red;">*</span></label><input type="text" class="form-control" name="jenis_diklat" required></div>
+      <div class="form-group"><label>Angkatan <span style="color: red;">*</span></label><input type="text" class="form-control" name="angkatan" required></div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title"><i class="fa-solid fa-star"></i> Penilaian (Skala 1 - 100)</h3>
+      <div class="info-box">Silakan pilih angka 1 hingga 100 pada setiap kriteria di bawah ini. Semua pertanyaan dengan tanda bintang (<span style="color: red;">*</span>) wajib diisi.</div>
+      
+      <div class="form-group"><label>1. Kesesuaian perencanaan dengan standar program Diklat <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p1" required><option value="">-- Pilih Nilai --</option></select>
       </div>
-      <div class="form-group">
-        <label>Nama Diklat / Angkatan *</label>
-        <input type="text" class="form-control" name="diklat" placeholder="Contoh: Latsar CPNS Angkatan IV" required>
+      <div class="form-group"><label>2. Penyampaian rencana kepada Instansi Pembina <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p2" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>3. SK Kepala Lembaga Diklat tentang Panitia Penyelenggara <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p3" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>4. Uraian tugas Panitia Penyelenggara Diklat <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p4" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>5. Pengkoordinasian dengan pihak-pihak terkait <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p5" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>6. Kesesuaian pelaksanaan dengan perencanaan <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p6" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>7. Laporan penyelenggaraan kepada Kepala Diklat/Instansi Pembina <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p7" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>8. Kelengkapan informasi Diklat (Bagian 1) <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p8" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>9. Ketersediaan & kebersihan asrama, kelas, makan, toilet <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p9" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>10. Fasilitas olahraga, kesehatan, tempat ibadah <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p10" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>11. Sarana dan bahan Diklat <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p11" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>12. Kelengkapan informasi Diklat (Bagian 2) <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p12" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>13. Ketepatan waktu menghubungi Widyaiswara & tim lain <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p13" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>14. Sarana pengajaran dalam kelas <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p14" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>15. Kelengkapan surat menyurat <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p15" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>16. Ketersediaan instrumen-instrumen penilaian <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p16" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>17. File keseluruhan dokumen setelah penyelenggaraan <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="p17" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+    </div>
+    <button type="submit" class="btn-submit">Kirim Evaluasi Tim Penyelenggara Diklat 🚀</button>
+  </form>
+
+ <form id="form-pengajar" class="form-evaluasi formEvaluasiAjax">
+    <input type="hidden" name="jenis_evaluasi" value="Pengajar">
+
+    <div class="form-section">
+      <h3 class="section-title"><i class="fa-solid fa-chalkboard-user"></i> Identitas</h3>
+      <div class="form-group"><label>Nama Tenaga Pengajar / Widyaiswara <span style="color: red;">*</span></label><input type="text" class="form-control" name="nama_wi" required></div>
+      <div class="form-group"><label>Materi <span style="color: red;">*</span></label><input type="text" class="form-control" name="materi" required></div>
+      <div class="form-group"><label>Angkatan <span style="color: red;">*</span></label><input type="text" class="form-control" name="angkatan" required></div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title"><i class="fa-solid fa-star"></i> Penilaian (Skala 1 - 100)</h3>
+      <div class="info-box">Silakan pilih angka 1 hingga 100 pada setiap kriteria di bawah ini. Semua pertanyaan dengan tanda bintang (<span style="color: red;">*</span>) wajib diisi.</div>
+
+      <div class="form-group"><label>1. Sistematika Penyajian <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w1" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>2. Kemampuan Penyajian <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w2" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>3. Ketepatan Waktu dan Kehadiran <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w3" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>4. Penggunaan Waktu dan Kehadiran <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w4" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>5. Sikap dan Perilaku <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w5" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>6. Cara Menjawab Pertanyaan dari Peserta <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w6" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>7. Penggunaan Bahasa <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w7" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>8. Pemberian Motivasi kepada Peserta <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w8" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>9. Kerapihan Berpakaian <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w9" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+      <div class="form-group"><label>10. Kerjasama Antar Widyaiswara <span style="color: red;">*</span></label>
+        <select class="form-control select-100" name="w10" required><option value="">-- Pilih Nilai --</option></select>
+      </div>
+    </div>
+    <button type="submit" class="btn-submit">Kirim Evaluasi Tim Pengajar / Widyaiswara 🚀</button>
+  </form>
+
+  <form id="form-skm" class="form-evaluasi formEvaluasiAjax">
+    <input type="hidden" name="jenis_evaluasi" value="SKM">
+    
+    <div class="info-box" style="text-align: justify;">
+      <b>Assalamu’alaikum Warahmatullahi Wabarakatuh, Salam sejahtera,</b><br><br>
+      Dalam rangka meningkatkan kualitas pelayanan publik di BBPK-APDN IV, kami menyelenggarakan SKM berdasarkan PermenPAN RB No. 14 Tahun 2017. Semua jawaban akan dijaga kerahasiaannya. Semua pertanyaan dengan tanda bintang (<span style="color: red;">*</span>) wajib diisi. Terima kasih atas masukan berharga Anda.
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title"><i class="fa-solid fa-user"></i> Identitas Responden</h3>
+      <div class="form-group"><label>Nama Lengkap <span style="color: red;">*</span></label><input type="text" class="form-control" name="nama" required></div>
+      
+      <div class="form-group"><label>Jenis Kelamin <span style="color: red;">*</span></label>
+        <select class="form-control" name="jk" required>
+          <option value="">-- Pilih --</option>
+          <option value="L">Laki-Laki (L)</option>
+          <option value="P">Perempuan (P)</option>
+        </select>
+      </div>
+
+      <div class="form-group"><label>Umur <span style="color: red;">*</span></label>
+        <select class="form-control" name="umur" required>
+          <option value="">-- Pilih --</option>
+          <option value="<29 Tahun">&lt; 29 Tahun</option>
+          <option value="29 sd 44 Tahun">29 s.d 44 Tahun</option>
+          <option value="45 sd 60 Tahun">45 s.d 60 Tahun</option>
+        </select>
+      </div>
+
+      <div class="form-group"><label>Jenis Layanan Yang Diterima <span style="color: red;">*</span></label>
+        <select class="form-control" name="jenis_layanan" required>
+          <option value="">-- Pilih --</option>
+          <option value="Pelatihan dan Pendidikan">Pelayanan Pelatihan dan Pendidikan</option>
+          <option value="Administrasi dan Informasi">Pelayanan Administrasi dan Informasi</option>
+          <option value="Fasilitas dan Penunjang">Pelayanan Fasilitas dan Penunjang</option>
+          <option value="Pengaduan dan Saran">Pelayanan Pengaduan dan Saran</option>
+        </select>
       </div>
     </div>
 
     <div class="form-section">
-      <h3 class="section-title"><i class="fa-solid fa-user-tie"></i> A. Tenaga Pengajar</h3>
-      <div class="form-group"><label>1. Penguasaan Materi</label>
-        <select class="form-control" name="a1" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      <h3 class="section-title"><i class="fa-solid fa-list-check"></i> Penilaian Layanan</h3>
+      
+      <div class="form-group"><label>1. Kesesuaian persyaratan pelayanan dengan jenis pelayanannya? <span style="color: red;">*</span></label>
+        <select class="form-control" name="skm1" required><option value="">Pilih Nilai</option><option value="4">Sangat Sesuai</option><option value="3">Sesuai</option><option value="2">Kurang Sesuai</option><option value="1">Tidak Sesuai</option></select>
       </div>
-      <div class="form-group"><label>2. Kejelasan Penyampaian</label>
-        <select class="form-control" name="a2" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      <div class="form-group"><label>2. Pemahaman tentang kemudahan prosedur pelayanan di unit ini? <span style="color: red;">*</span></label>
+        <select class="form-control" name="skm2" required><option value="">Pilih Nilai</option><option value="4">Sangat Sesuai</option><option value="3">Sesuai</option><option value="2">Kurang Sesuai</option><option value="1">Tidak Sesuai</option></select>
       </div>
-      <div class="form-group"><label>3. Metode Pembelajaran</label>
-        <select class="form-control" name="a3" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      <div class="form-group"><label>3. Kecepatan waktu dalam memberikan pelayanan? <span style="color: red;">*</span></label>
+        <select class="form-control" name="skm3" required><option value="">Pilih Nilai</option><option value="4">Sangat Sesuai</option><option value="3">Sesuai</option><option value="2">Kurang Sesuai</option><option value="1">Tidak Sesuai</option></select>
       </div>
-      <div class="form-group"><label>4. Interaksi dengan Peserta</label>
-        <select class="form-control" name="a4" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      <div class="form-group"><label>4. Kewajaran biaya/tarif dalam pelayanan? <span style="color: red;">*</span></label>
+        <select class="form-control" name="skm4" required><option value="">Pilih Nilai</option><option value="4">Sangat Sesuai</option><option value="3">Sesuai</option><option value="2">Kurang Sesuai</option><option value="1">Tidak Sesuai</option></select>
       </div>
-      <div class="form-group"><label>5. Ketepatan Waktu</label>
-        <select class="form-control" name="a5" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      <div class="form-group"><label>5. Kesesuaian produk pelayanan standar dengan hasil yang diberikan? <span style="color: red;">*</span></label>
+        <select class="form-control" name="skm5" required><option value="">Pilih Nilai</option><option value="4">Sangat Sesuai</option><option value="3">Sesuai</option><option value="2">Kurang Sesuai</option><option value="1">Tidak Sesuai</option></select>
       </div>
-    </div>
-
-    <div class="form-section">
-      <h3 class="section-title"><i class="fa-solid fa-users-gear"></i> B. Tim Penyelenggara</h3>
-      <div class="form-group"><label>1. Kejelasan Informasi Awal</label>
-        <select class="form-control" name="b1" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      <div class="form-group"><label>6. Kompetensi/ kemampuan petugas dalam pelayanan? <span style="color: red;">*</span></label>
+        <select class="form-control" name="skm6" required><option value="">Pilih Nilai</option><option value="4">Sangat Sesuai</option><option value="3">Sesuai</option><option value="2">Kurang Sesuai</option><option value="1">Tidak Sesuai</option></select>
       </div>
-      <div class="form-group"><label>2. Ketepatan Jadwal Kegiatan</label>
-        <select class="form-control" name="b2" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      <div class="form-group"><label>7. Perilaku petugas dalam pelayanan terkait kesopanan dan keramahan? <span style="color: red;">*</span></label>
+        <select class="form-control" name="skm7" required><option value="">Pilih Nilai</option><option value="4">Sangat Sesuai</option><option value="3">Sesuai</option><option value="2">Kurang Sesuai</option><option value="1">Tidak Sesuai</option></select>
       </div>
-      <div class="form-group"><label>3. Respons Terhadap Kendala</label>
-        <select class="form-control" name="b3" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      <div class="form-group"><label>8. Kualitas sarana dan prasarana? <span style="color: red;">*</span></label>
+        <select class="form-control" name="skm8" required><option value="">Pilih Nilai</option><option value="4">Sangat Sesuai</option><option value="3">Sesuai</option><option value="2">Kurang Sesuai</option><option value="1">Tidak Sesuai</option></select>
       </div>
-      <div class="form-group"><label>4. Pelayanan Administrasi</label>
-        <select class="form-control" name="b4" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
-      </div>
-      <div class="form-group"><label>5. Fasilitas Kebutuhan Peserta</label>
-        <select class="form-control" name="b5" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
+      <div class="form-group"><label>9. Penanganan pengaduan pengguna layanan? <span style="color: red;">*</span></label>
+        <select class="form-control" name="skm9" required><option value="">Pilih Nilai</option><option value="4">Sangat Sesuai</option><option value="3">Sesuai</option><option value="2">Kurang Sesuai</option><option value="1">Tidak Sesuai</option></select>
       </div>
     </div>
-
-    <div class="form-section">
-      <h3 class="section-title"><i class="fa-solid fa-comment-dots"></i> Masukan untuk Tim</h3>
-      <div class="form-group">
-        <label>Kritik/Saran khusus Pengajar atau Panitia</label>
-        <textarea class="form-control" name="saran_tim" placeholder="Apa yang perlu diperbaiki dari kinerja tim?"></textarea>
-      </div>
-    </div>
-
-    <button type="submit" class="btn-submit">Kirim Evaluasi Tim 🚀</button>
+    <button type="submit" class="btn-submit">Kirim Survey Kepuasan Masyarakat 🚀</button>
   </form>
 
   <form id="form-sarpras" class="form-evaluasi formEvaluasiAjax">
-    <input type="hidden" name="jenis_evaluasi" value="Sarana Prasarana">
+    <input type="hidden" name="jenis_evaluasi" value="Sarpras">
 
     <div class="form-section">
+      <h3 class="section-title"><i class="fa-solid fa-hotel"></i> Identitas</h3>
       <div class="form-group">
-        <label>Nama Anda (Opsional)</label>
-        <input type="text" class="form-control" name="nama" placeholder="Boleh dikosongkan">
+        <label>Nama Lengkap <span style="color: red;">*</span></label>
+        <input type="text" class="form-control" name="nama_lengkap" required>
       </div>
       <div class="form-group">
-        <label>Nama Diklat / Angkatan *</label>
-        <input type="text" class="form-control" name="diklat" placeholder="Contoh: Latsar CPNS Angkatan IV" required>
+        <label>Jenis Diklat <span style="color: red;">*</span></label>
+        <input type="text" class="form-control" name="jenis_diklat" required>
+      </div>
+      <div class="form-group">
+        <label>Angkatan <span style="color: red;">*</span></label>
+        <input type="text" class="form-control" name="angkatan" required>
       </div>
     </div>
 
     <div class="form-section">
-      <h3 class="section-title"><i class="fa-solid fa-hotel"></i> C. Sarana Prasarana</h3>
-      <div class="form-group"><label>1. Ruang Kelas (AC, Kursi, Proyektor)</label>
-        <select class="form-control" name="c1" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
-      </div>
-      <div class="form-group"><label>2. Asrama / Penginapan</label>
-        <select class="form-control" name="c2" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
-      </div>
-      <div class="form-group"><label>3. Konsumsi (Rasa, Variasi, Ketepatan)</label>
-        <select class="form-control" name="c3" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
-      </div>
-      <div class="form-group"><label>4. Kebersihan Fasilitas Toilet & Lingkungan</label>
-        <select class="form-control" name="c4" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
-      </div>
-      <div class="form-group"><label>5. Jaringan Internet (Wi-Fi)</label>
-        <select class="form-control" name="c5" required><option value="">Pilih Nilai (1 - 4)</option><option value="4">4 - Sangat Baik</option><option value="3">3 - Baik</option><option value="2">2 - Cukup Baik</option><option value="1">1 - Kurang Baik</option></select>
-      </div>
-    </div>
+      <h3 class="section-title"><i class="fa-solid fa-check-to-slot"></i> Penilaian Fasilitas</h3>
+      <div class="info-box">Silakan pilih penilaian dari Sangat Baik hingga Kurang Baik. Semua pertanyaan dengan tanda bintang (<span style="color: red;">*</span>) wajib diisi.</div>
 
-    <div class="form-section">
-      <h3 class="section-title"><i class="fa-solid fa-toolbox"></i> Masukan Fasilitas</h3>
       <div class="form-group">
-        <label>Kritik/Saran khusus Sarana Prasarana</label>
-        <textarea class="form-control" name="saran_sarpras" placeholder="Contoh: Menu makanan kurang variasi, AC kelas panas, dsb."></textarea>
+        <label>1. Kenyamanan & Fasilitas Ruang Kelas <span style="color: red;">*</span></label>
+        <select class="form-control" name="s1" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>2. Kebersihan & Kenyamanan Kamar Asrama <span style="color: red;">*</span></label>
+        <select class="form-control" name="s2" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>3. Kualitas Rasa & Ketepatan Waktu Katering <span style="color: red;">*</span></label>
+        <select class="form-control" name="s3" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>4. Kebersihan Toilet Umum & Lingkungan Sekitar <span style="color: red;">*</span></label>
+        <select class="form-control" name="s4" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>5. Kestabilan Jaringan Internet / Wi-Fi <span style="color: red;">*</span></label>
+        <select class="form-control" name="s5" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>6. Kelayakan Fasilitas Ibadah & Olahraga <span style="color: red;">*</span></label>
+        <select class="form-control" name="s6" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>7. Ketersediaan & Kebersihan Kantin <span style="color: red;">*</span></label>
+        <select class="form-control" name="s7" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>8. Pencahayaan & Sirkulasi Udara Gedung <span style="color: red;">*</span></label>
+        <select class="form-control" name="s8" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>9. Keramahan Petugas Keamanan/Kebersihan <span style="color: red;">*</span></label>
+        <select class="form-control" name="s9" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>10. Ketersediaan Air Bersih & Listrik <span style="color: red;">*</span></label>
+        <select class="form-control" name="s10" required>
+          <option value="">-- Pilih Nilai --</option>
+          <option value="4">Sangat Baik</option>
+          <option value="3">Baik</option>
+          <option value="2">Cukup Baik</option>
+          <option value="1">Kurang Baik</option>
+        </select>
+      </div>
+      
+      <div class="form-group" style="margin-top: 20px;">
+        <label>Kritik & Saran Tambahan Fasilitas</label>
+        <textarea class="form-control" name="saran_sarpras" placeholder="Tuliskan keluhan atau saran Anda di sini..."></textarea>
       </div>
     </div>
-
+    
     <button type="submit" class="btn-submit">Kirim Evaluasi Sarpras 🚀</button>
   </form>
 
@@ -239,16 +479,19 @@
 
 <div id="loading">
   <div class="spinner"></div>
-  <p style="font-weight:bold; color:#205E6C;">Mengirim Hasil Evaluasi...</p>
+  <p style="font-weight:bold; color:#205E6C;">Mengirim Data Evaluasi...</p>
 </div>
 
 <script>
-  // URL Google Apps Script Anda (Tetap Sama)
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxiJufwb9j6GjgTwTapb1Vlv_TSznBGqnjPHtryCG6yA2ILUthO0vGBr4SHg9XHOquF/exec'; 
+  // PASTIKAN URL INI ADALAH URL GOOGLE APPS SCRIPT YANG BARU NANTI
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzk1JfS_68D3pGIXw_zbuAfg-ZJyhV7NMRI8c5IPtrdiBXcUCq2qT_EW86xNr0l7RGp-A/exec'; 
   
   const loading = document.getElementById('loading');
   const menuUtama = document.getElementById('evaluasi-menu');
-  const formDiklat = document.getElementById('form-diklat');
+  
+  const formPenyelenggara = document.getElementById('form-penyelenggara');
+  const formPengajar = document.getElementById('form-pengajar');
+  const formSkm = document.getElementById('form-skm');
   const formSarpras = document.getElementById('form-sarpras');
   
   const btnUtama = document.getElementById('back-to-main');
@@ -257,64 +500,76 @@
   const headerTitle = document.getElementById('header-title');
   const headerDesc = document.getElementById('header-desc');
 
-  // --- LOGIKA TAMPILAN (NAVIGASI) ---
+  // --- SCRIPT GENERATE DROPDOWN 100-1 OTOMATIS ---
+  document.addEventListener("DOMContentLoaded", function() {
+    // Mencari semua elemen select yang memiliki class 'select-100'
+    const selects100 = document.querySelectorAll('.select-100');
+    
+    selects100.forEach(select => {
+      // Mengisi angka dari 100 menurun ke 1 (Angka besar di atas agar mudah diklik peserta)
+      for (let i = 100; i >= 1; i--) {
+        let option = document.createElement('option');
+        option.value = i;
+        option.text = i;
+        select.appendChild(option);
+      }
+    });
+  });
 
+  // --- LOGIKA TAMPILAN (NAVIGASI) ---
   function bukaForm(jenis) {
-    // Sembunyikan Menu Pilihan
     menuUtama.style.display = 'none';
     btnUtama.style.display = 'none';
-    
-    // Munculkan Tombol Kembali ke Pilih Evaluasi
     btnMenu.style.display = 'inline-flex';
 
-    if (jenis === 'diklat') {
-      formDiklat.style.display = 'block';
-      headerTitle.innerText = "Evaluasi Tim Diklat";
-      headerDesc.innerText = "Penilaian Tenaga Pengajar & Panitia Penyelenggara";
+    if (jenis === 'penyelenggara') {
+      formPenyelenggara.style.display = 'block';
+      headerTitle.innerText = "Evaluasi Tim Penyelenggara Diklat";
+      headerDesc.innerText = "Penilaian manajemen dan administrasi penyelenggaraan diklat";
+    } else if (jenis === 'pengajar') {
+      formPengajar.style.display = 'block';
+      headerTitle.innerText = "Evaluasi Tim Pengajar / Widyaiswara";
+      headerDesc.innerText = "Penilaian kompetensi dan penyajian materi Widyaiswara";
+    } else if (jenis === 'skm') {
+      formSkm.style.display = 'block';
+      headerTitle.innerText = "Survei SKM";
+      headerDesc.innerText = "Survei Kepuasan Masyarakat Unit Pelayanan Publik";
     } else if (jenis === 'sarpras') {
       formSarpras.style.display = 'block';
       headerTitle.innerText = "Evaluasi Sarpras";
-      headerDesc.innerText = "Penilaian Fasilitas, Asrama, Konsumsi & Internet";
+      headerDesc.innerText = "Penilaian kebersihan asrama, kelas, makan, dan fasilitas umum";
     }
-    
-    // Scroll ke atas otomatis
     window.scrollTo(0, 0);
   }
 
   function tampilkanMenu() {
-    // Sembunyikan semua form
-    formDiklat.style.display = 'none';
+    formPenyelenggara.style.display = 'none';
+    formPengajar.style.display = 'none';
+    formSkm.style.display = 'none';
     formSarpras.style.display = 'none';
-    btnMenu.style.display = 'none';
     
-    // Munculkan Menu Utama
+    btnMenu.style.display = 'none';
     menuUtama.style.display = 'flex';
     btnUtama.style.display = 'inline-flex';
     
-    // Reset Header
     headerTitle.innerText = "Survey & Evaluasi";
     headerDesc.innerText = "Bantu kami meningkatkan kualitas layanan BBPK-APDN IV";
-    
     window.scrollTo(0, 0);
   }
 
   // --- LOGIKA PENGIRIMAN DATA (AJAX) ---
-  
-  // Ambil semua form yang memiliki class 'formEvaluasiAjax'
   const forms = document.querySelectorAll('.formEvaluasiAjax');
-
   forms.forEach(form => {
     form.addEventListener('submit', e => {
       e.preventDefault();
-      loading.style.display = 'flex'; // Munculkan loading
+      loading.style.display = 'flex'; 
       
-      // Ambil data dari form yang sedang di-submit
       fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
         .then(() => {
           loading.style.display = 'none';
           alert("Terima kasih! Evaluasi Anda telah berhasil disimpan.");
-          form.reset(); // Kosongkan form setelah sukses
-          window.location.href = "index.html"; // Balik ke beranda
+          form.reset(); 
+          window.location.href = "index.html"; 
         })
         .catch(error => {
           loading.style.display = 'none';
